@@ -1,0 +1,59 @@
+
+.topMargin {
+	margin-top: 1em;
+}
+
+.leftMargin {
+	margin-left: 1em;
+}
+
+.rightMargin {
+	margin-right: 1em;
+}
+
+.marginMiddle {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.flexRow {
+	display: flex;
+	flex-direction: row;
+}
+
+.flexColumn {
+	display: flex;
+	flex-direction: column;
+}
+
+.flexMainCenter {
+  justify-content: center;
+}
+
+.flexCrossCenter {
+	align-items: center;
+}
+
+.flexChange {
+	flex: 1 1 auto;
+}
+
+.centerText {
+	vertical-align: middle;
+}
+
+.inlineBlock {
+	display: inline-block;
+}
+
+h1 {
+	font-size: 4em;
+}
+
+.darkBlue {
+	background-color: #12A3EB;
+}
+
+.bold {
+	font-weight: bold;
+}
