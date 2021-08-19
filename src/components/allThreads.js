@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
+function createThread(threadId, threadTitle) {
+  const mainLi = document.createElement("li");
+  mainLi.key = threadId;
+  const img = document.createElement("img");
+  img.src = "https://i.ibb.co/bv5CNx7/hamburger-menu.png";
+  img.alt = "thread-logo";
+  img.style.border = 0;
+  const link = document.createElement("a");
+  link.href = "/thread/" + threadId;
+  link.classList = "flexRow flexCrossCenter topMargin";
+  const title = document.createElement("p");
+  title.innerHTML = threadTitle;
+
+  link.appendChild(img);
+  link.appendChild(title);
+  mainLi.appendChild(link);
+  return mainLi;
+}
+
 const AllThreads = function AllThreads(props) {
   const [title, setTitle] = useState("");
 
@@ -22,13 +41,7 @@ const AllThreads = function AllThreads(props) {
         .then((data) => {
           console.log(data);
           data.forEach((element) => {
-            const dummyPart = document.createElement("li");
-            const dummyNode = document.createElement("a");
-            dummyNode.key = element._id;
-            dummyNode.innerHTML = element.title;
-            dummyNode.href = "/thread/" + element._id;
-            dummyPart.appendChild(dummyNode);
-            threadArea.appendChild(dummyPart);
+            threadArea.appendChild(createThread(element._id, element.title));
           });
         })
         .catch((error) => {
@@ -57,6 +70,7 @@ const AllThreads = function AllThreads(props) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -67,7 +81,6 @@ const AllThreads = function AllThreads(props) {
     <div>
       <Router>
         <div className="darkBlue mainBox topMargin marginMiddle">
-          <p> Posts </p>
           <ul id="threadArea"></ul>
         </div>
       </Router>
@@ -78,7 +91,14 @@ const AllThreads = function AllThreads(props) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></input>
-        <button type="submit"> Submit </button>
+        <button type="submit">
+          <img
+            src="https://i.ibb.co/tYdNk0J/feather.png"
+            alt="feather"
+            border="0"
+          ></img>
+          Submit
+        </button>
       </form>
     </div>
   );

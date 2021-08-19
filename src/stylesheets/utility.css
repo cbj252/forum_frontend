@@ -50,10 +50,34 @@ h1 {
 	font-size: 4em;
 }
 
-.darkBlue {
+.lightBlue {
+	background-color: #6ACEFF;
+}
+
+.mediumBlue {
 	background-color: #12A3EB;
 }
 
-.bold {
-	font-weight: bold;
+.darkBlue {
+	background-color: #0076B1;
+}
+
+.lightWhite {
+	background-color: #ECF3F7;
+}
+
+.whiteText {
+	color: #FFFFFF;
+}
+
+.redText {
+	color: #D31141;
+}
+
+.smallText {
+	font-size: 10px;
+}
+
+.upper {
+	text-transform: uppercase;
 }

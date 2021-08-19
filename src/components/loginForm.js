@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 const LoginForm = function LoginForm(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,6 +23,7 @@ const LoginForm = function LoginForm(props) {
       .then((response) => {
         console.log(response);
         props.onChangeToken(response.token);
+        cookies.set("token", response.token, { path: "/" });
       })
       .catch((error) => {
         console.error("Error:", error);

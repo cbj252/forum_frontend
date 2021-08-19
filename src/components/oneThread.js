@@ -1,10 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+function createPost(threadTitle, username, postContent, time) {
+  const mainDiv = document.createElement("div");
+  mainDiv.classList = "leftMargin flexChange";
+
+  const title = document.createElement("a");
+  title.innerHTML = threadTitle;
+  title.href = "/";
+
+  const timestamp = document.createElement("p");
+  timestamp.className = "smallText";
+  timestamp.innerHTML = `by ${username} >> ${new Date(time)}`;
+
+  const content = document.createElement("p");
+  content.className = "topMargin";
+  content.innerHTML = postContent;
+
+  mainDiv.appendChild(title);
+  mainDiv.appendChild(timestamp);
+  mainDiv.appendChild(content);
+  return mainDiv;
+}
+
 const OneThread = function OneThread(props) {
   const [content, setContent] = useState("");
   let { id } = useParams();
-  console.log(props);
 
   useEffect(() => {
     const postArea = document.getElementById("postArea");
@@ -22,16 +43,26 @@ const OneThread = function OneThread(props) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          data.forEach((element) => {
-            const dummyPart = document.createElement("li");
-            const dummyNode = document.createElement("a");
-            dummyNode.key = element._id;
-            dummyNode.innerHTML = element.content;
-            dummyNode.href = "/thread/" + element._id;
-            dummyPart.appendChild(dummyNode);
-            postArea.appendChild(dummyPart);
-          });
+          if (data.length === 0) {
+            const message = document.createElement("p");
+            message.innerHTML = "No posts in this thread. Make a post now!";
+            postArea.appendChild(message);
+          } else {
+            data.forEach((element) => {
+              const dummyPart = document.createElement("li");
+              dummyPart.key = element._id;
+              dummyPart.classList = "roundBorder lightWhite flexRow";
+              dummyPart.appendChild(
+                createPost(
+                  element.thread.title,
+                  element.author.username,
+                  element.content,
+                  element.time
+                )
+              );
+              postArea.appendChild(dummyPart);
+            });
+          }
         })
         .catch((error) => {
           return "Error" + error;
@@ -59,6 +90,7 @@ const OneThread = function OneThread(props) {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -67,8 +99,7 @@ const OneThread = function OneThread(props) {
 
   return (
     <div>
-      <div className="darkBlue mainBox topMargin marginMiddle">
-        <p> Topics </p>
+      <div class="roundBorder lightWhite topMargin flexRow">
         <ul id="postArea"></ul>
       </div>
       <form onSubmit={(e) => postNewPost(e)}>
@@ -78,8 +109,15 @@ const OneThread = function OneThread(props) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
         ></input>
+        <button type="submit">
+          <img
+            src="https://i.ibb.co/tYdNk0J/feather.png"
+            alt="feather"
+            border="0"
+          ></img>
+          Submit
+        </button>
       </form>
-      <button onClick={() => postNewPost()}> Post </button>
     </div>
   );
 };
