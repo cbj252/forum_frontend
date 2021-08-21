@@ -8,6 +8,35 @@ const OneThread = function OneThread(props) {
 
   useEffect(() => {
     const postArea = document.getElementById("postArea");
+    function deleteLink(postId) {
+      const link = document.createElement("p");
+      link.className = "smallText";
+      link.innerHTML = "Delete";
+      link.addEventListener("click", () => {
+        fetch(
+          process.env.REACT_APP_API_LOCATION + `/threads/${postId}/delete`,
+          {
+            method: "POST",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: "Bearer " + props.token,
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            window.location.reload();
+          })
+          .catch((error) => {
+            return "Error" + error;
+          });
+      });
+      console.log(link);
+      return link;
+    }
+
     function getPosts() {
       if (!props.token) {
         postArea.innerHTML = "Not logged in.";
@@ -28,10 +57,10 @@ const OneThread = function OneThread(props) {
             postArea.appendChild(message);
           } else {
             data.forEach((element) => {
-              const dummyPart = document.createElement("li");
-              dummyPart.key = element._id;
-              dummyPart.classList = "roundBorder lightWhite flexRow";
-              dummyPart.appendChild(
+              const postDiv = document.createElement("li");
+              postDiv.key = element._id;
+              postDiv.classList = "roundBorder lightWhite flexRow";
+              postDiv.appendChild(
                 createPost(
                   element.thread.title,
                   element.author.username,
@@ -39,7 +68,8 @@ const OneThread = function OneThread(props) {
                   element.time
                 )
               );
-              postArea.appendChild(dummyPart);
+              postDiv.appendChild(deleteLink(element._id));
+              postArea.appendChild(postDiv);
             });
           }
         })
@@ -48,7 +78,7 @@ const OneThread = function OneThread(props) {
         });
     }
     getPosts();
-  }, [props.token, id]);
+  }, [props.token, props.userType, id]);
 
   function postNewPost(e) {
     e.preventDefault();
