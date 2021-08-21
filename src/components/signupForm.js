@@ -5,7 +5,7 @@ const SignupForm = function SignupForm() {
   const [password, setPassword] = useState("");
 
   function submitForm() {
-    fetch("http://localhost:8000/user/signup", {
+    fetch(process.env.REACT_APP_API_LOCATION + "/user/signup", {
       method: "POST",
       mode: "cors",
       headers: {

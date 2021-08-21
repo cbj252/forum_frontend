@@ -1,24 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-
-function createThread(threadId, threadTitle) {
-  const mainLi = document.createElement("li");
-  mainLi.key = threadId;
-  const img = document.createElement("img");
-  img.src = "https://i.ibb.co/bv5CNx7/hamburger-menu.png";
-  img.alt = "thread-logo";
-  img.style.border = 0;
-  const link = document.createElement("a");
-  link.href = "/thread/" + threadId;
-  link.classList = "flexRow flexCrossCenter topMargin";
-  const title = document.createElement("p");
-  title.innerHTML = threadTitle;
-
-  link.appendChild(img);
-  link.appendChild(title);
-  mainLi.appendChild(link);
-  return mainLi;
-}
+import { createThread } from "../helpFunc";
 
 const AllThreads = function AllThreads(props) {
   const [title, setTitle] = useState("");
@@ -29,7 +11,7 @@ const AllThreads = function AllThreads(props) {
       if (!props.token) {
         threadArea.innerHTML = "Not logged in.";
       }
-      fetch("http://localhost:8000/threads", {
+      fetch(process.env.REACT_APP_API_LOCATION + "/threads", {
         method: "GET",
         mode: "cors",
         headers: {
@@ -56,7 +38,7 @@ const AllThreads = function AllThreads(props) {
     if (!props.token) {
       return "Not logged in.";
     }
-    fetch("http://localhost:8000/threads", {
+    fetch(process.env.REACT_APP_API_LOCATION + "/threads", {
       method: "POST",
       mode: "cors",
       headers: {

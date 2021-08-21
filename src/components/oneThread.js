@@ -1,27 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
-function createPost(threadTitle, username, postContent, time) {
-  const mainDiv = document.createElement("div");
-  mainDiv.classList = "leftMargin flexChange";
-
-  const title = document.createElement("a");
-  title.innerHTML = threadTitle;
-  title.href = "/";
-
-  const timestamp = document.createElement("p");
-  timestamp.className = "smallText";
-  timestamp.innerHTML = `by ${username} >> ${new Date(time)}`;
-
-  const content = document.createElement("p");
-  content.className = "topMargin";
-  content.innerHTML = postContent;
-
-  mainDiv.appendChild(title);
-  mainDiv.appendChild(timestamp);
-  mainDiv.appendChild(content);
-  return mainDiv;
-}
+import { createPost } from "../helpFunc";
 
 const OneThread = function OneThread(props) {
   const [content, setContent] = useState("");
@@ -33,7 +12,7 @@ const OneThread = function OneThread(props) {
       if (!props.token) {
         postArea.innerHTML = "Not logged in.";
       }
-      fetch("http://localhost:8000/threads/" + id, {
+      fetch(process.env.REACT_APP_API_LOCATION + "/threads/" + id, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -76,7 +55,7 @@ const OneThread = function OneThread(props) {
     if (!props.token) {
       return "Not logged in.";
     }
-    fetch("http://localhost:8000/threads/" + id, {
+    fetch(process.env.REACT_APP_API_LOCATION + "/threads/" + id, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -99,7 +78,7 @@ const OneThread = function OneThread(props) {
 
   return (
     <div>
-      <div class="roundBorder lightWhite topMargin flexRow">
+      <div className="roundBorder lightWhite topMargin flexRow">
         <ul id="postArea"></ul>
       </div>
       <form onSubmit={(e) => postNewPost(e)}>

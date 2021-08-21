@@ -8,7 +8,7 @@ const LoginForm = function LoginForm(props) {
   const [password, setPassword] = useState("");
 
   function submitForm() {
-    fetch("http://localhost:8000/user/login", {
+    fetch(process.env.REACT_APP_API_LOCATION + "/user/login", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -21,7 +21,6 @@ const LoginForm = function LoginForm(props) {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
         props.onChangeToken(response.token);
         cookies.set("token", response.token, { path: "/" });
       })
