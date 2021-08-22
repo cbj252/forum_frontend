@@ -106,7 +106,19 @@ const AdminPage = function AdminPage(props) {
 
   return (
     <div className="darkBlue mainBox topMargin marginMiddle">
-      <div id="msgBox"></div>
+      <div id="msgBox">
+        <div>
+          <p> Permission rules: </p>
+          <p> Owners may add admins, remove admins and delete posts. </p>
+          <p> Admins may add admins and delete posts. </p>
+          <p> Users cannot add/remove admins and cannot delete posts.</p>
+          <p>
+            {" "}
+            All members can edit their own posts. Posts cannot be edited by
+            others, regardless of permissions.{" "}
+          </p>
+        </div>
+      </div>
       <div id="owner" className="topMargin">
         Owners
         <ul id="ownerArea"></ul>
