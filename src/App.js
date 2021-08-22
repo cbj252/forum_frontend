@@ -42,6 +42,16 @@ function App() {
     getState();
   });
 
+<<<<<<< HEAD
+=======
+  function logout() {
+    cookies.remove("token");
+    setUsername("");
+    setUserType("");
+    window.location.reload();
+  }
+
+>>>>>>> 24e66d8 (Logout)
   function makeNavbar() {
     if (username === "") {
       return (
@@ -71,6 +81,7 @@ function App() {
     } else if (userType === "user") {
       return (
         <nav className="roundBorder flexRow flexCrossCenter topMargin lightWhite">
+<<<<<<< HEAD
           <div>
             <Link to="/"> Board Index </Link>
           </div>
@@ -86,19 +97,39 @@ function App() {
             ></img>
             <Link to="/login"> Login </Link>
           </div>
+=======
+          <Link to="/"> Board Index </Link>
+          <div className="flexChange"></div>
+          <p> Welcome back, {username} </p>
+          <img
+            src="https://i.ibb.co/44mwbdv/power-off-line.png"
+            alt="power-off-line"
+            border="0"
+            className="leftMargin"
+          ></img>
+          <p onClick={() => logout()} className="blueLink">
+            {" "}
+            Logout{" "}
+          </p>
+>>>>>>> 24e66d8 (Logout)
         </nav>
       );
     } else {
       return (
         <nav className="roundBorder flexRow flexCrossCenter topMargin lightWhite">
+<<<<<<< HEAD
           <div>
             <Link to="/"> Board Index </Link>
           </div>
+=======
+          <Link to="/"> Board Index </Link>
+>>>>>>> 24e66d8 (Logout)
           <div className="flexChange"></div>
           <Link to="/admin"> Admin Portal </Link>
           <div className="leftMargin">
             <p> Welcome back, {username} </p>
           </div>
+<<<<<<< HEAD
           <div className="leftMargin">
             <img
               src="https://i.ibb.co/44mwbdv/power-off-line.png"
@@ -107,6 +138,18 @@ function App() {
             ></img>
             <Link to="/login"> Login </Link>
           </div>
+=======
+          <img
+            src="https://i.ibb.co/44mwbdv/power-off-line.png"
+            alt="power-off-line"
+            border="0"
+            className="leftMargin"
+          ></img>
+          <p onClick={() => logout()} className="blueLink">
+            {" "}
+            Logout{" "}
+          </p>
+>>>>>>> 24e66d8 (Logout)
         </nav>
       );
     }

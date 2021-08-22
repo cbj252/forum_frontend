@@ -10,7 +10,11 @@ const OneThread = function OneThread(props) {
     const postArea = document.getElementById("postArea");
     function deleteLink(postId) {
       const link = document.createElement("p");
+<<<<<<< HEAD
       link.className = "smallText";
+=======
+      link.classList = "smallText blueLink leftMargin";
+>>>>>>> 24e66d8 (Logout)
       link.innerHTML = "Delete";
       link.addEventListener("click", () => {
         fetch(
@@ -59,7 +63,11 @@ const OneThread = function OneThread(props) {
             data.forEach((element) => {
               const postDiv = document.createElement("li");
               postDiv.key = element._id;
+<<<<<<< HEAD
               postDiv.classList = "roundBorder lightWhite flexRow";
+=======
+              postDiv.classList = "roundBorder lightWhite flexColumn";
+>>>>>>> 24e66d8 (Logout)
               postDiv.appendChild(
                 createPost(
                   element.thread.title,
@@ -68,7 +76,13 @@ const OneThread = function OneThread(props) {
                   element.time
                 )
               );
+<<<<<<< HEAD
               postDiv.appendChild(deleteLink(element._id));
+=======
+              if (props.userType === "administrator" || "owner") {
+                postDiv.appendChild(deleteLink(element._id));
+              }
+>>>>>>> 24e66d8 (Logout)
               postArea.appendChild(postDiv);
             });
           }

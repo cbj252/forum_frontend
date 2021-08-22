@@ -81,3 +81,11 @@ h1 {
 .upper {
 	text-transform: uppercase;
 }
+<<<<<<< HEAD
+=======
+
+.blueLink {
+	color: #105289;
+	text-decoration: underline;
+}
+>>>>>>> 24e66d8 (Logout)
