@@ -62,12 +62,19 @@ const LoginForm = function LoginForm(props) {
         <button className="topMargin" onClick={() => submitForm()}>
           Submit
         </button>
-        <p className="topMargin">
-          To test out accounts with different authorization levels, login with
-          the following. Username and password are identical (e.g. to login as a
-          user, put in "user" as the username and "user" as the password) Normal
-          User: user Administartor: administrator Owner: owner
-        </p>
+        <div className="topMargin">
+          <p>
+            To test out accounts with different authorization levels, login with
+            the following.
+          </p>
+          <p>
+            Username and password are identical (e.g. to login as a user, put in
+            "user" as the username and "user" as the password)
+          </p>
+          <p> Normal user: user </p>
+          <p> Admin: administrator </p>
+          <p> Owner: owner </p>
+        </div>
       </div>
     </div>
   );
