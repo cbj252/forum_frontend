@@ -10,7 +10,7 @@ const OneThread = function OneThread(props) {
     const postArea = document.getElementById("postArea");
     function deleteLink(postId) {
       const link = document.createElement("p");
-      link.classList = "smallText blueLink leftMargin";
+      link.classList = "smallText blueLink";
       link.innerHTML = "Delete";
       link.addEventListener("click", () => {
         fetch(
@@ -33,8 +33,61 @@ const OneThread = function OneThread(props) {
             return "Error" + error;
           });
       });
-      console.log(link);
       return link;
+    }
+
+    function editLink(postId, postContent) {
+      const hideEditPanel = document.createElement("div");
+      hideEditPanel.style.display = "none";
+      hideEditPanel.classList = "flexColumn";
+
+      const editBox = document.createElement("textarea");
+      editBox.className = "bigInputBox";
+      editBox.value = postContent;
+
+      const editButton = document.createElement("button");
+      editButton.innerHTML = "Edit";
+      editButton.addEventListener("click", () => {
+        fetch(process.env.REACT_APP_API_LOCATION + `/threads/${postId}/edit`, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + props.token,
+          },
+          body: JSON.stringify({
+            content: editBox.value,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            window.location.reload();
+          })
+          .catch((error) => {
+            return "Error" + error;
+          });
+      });
+
+      hideEditPanel.appendChild(editBox);
+      hideEditPanel.appendChild(editButton);
+
+      const link = document.createElement("p");
+      link.classList = "smallText blueLink";
+      link.innerHTML = "Edit";
+      link.addEventListener("click", () => {
+        if (hideEditPanel.style.display === "none") {
+          hideEditPanel.style.display = "flex";
+        } else {
+          hideEditPanel.style.display = "none";
+        }
+      });
+
+      const wrapperDiv = document.createElement("div");
+      wrapperDiv.appendChild(link);
+      wrapperDiv.appendChild(hideEditPanel);
+
+      return wrapperDiv;
     }
 
     function getPosts() {
@@ -68,7 +121,13 @@ const OneThread = function OneThread(props) {
                   element.time
                 )
               );
-              if (props.userType === "administrator" || "owner") {
+              if (element.author.username === props.username) {
+                postDiv.appendChild(editLink(element._id, element.content));
+              }
+              if (
+                props.userType === "administrator" ||
+                props.userType === "owner"
+              ) {
                 postDiv.appendChild(deleteLink(element._id));
               }
               postArea.appendChild(postDiv);
@@ -80,7 +139,7 @@ const OneThread = function OneThread(props) {
         });
     }
     getPosts();
-  }, [props.token, props.userType, id]);
+  }, [props.token, props.userType, props.username, id]);
 
   function postNewPost(e) {
     e.preventDefault();
@@ -115,11 +174,13 @@ const OneThread = function OneThread(props) {
       </div>
       <form onSubmit={(e) => postNewPost(e)}>
         <label htmlFor="content"> New post content: </label>
-        <input
+        <textarea
           name="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-        ></input>
+          className="bigInputBox"
+        ></textarea>
+        <br />
         <button type="submit">
           <img
             src="https://i.ibb.co/tYdNk0J/feather.png"

@@ -151,7 +151,7 @@ function App() {
   }
 
   function Thread() {
-    return <OneThread token={jwttoken} userType={userType} />;
+    return <OneThread token={jwttoken} username={username} userType={userType} />;
   }
 
   function MainPage() {

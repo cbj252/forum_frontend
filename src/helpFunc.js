@@ -1,6 +1,6 @@
 export function createPost(threadTitle, username, postContent, time) {
   const mainDiv = document.createElement("div");
-  mainDiv.classList = "leftMargin flexChange";
+  mainDiv.classList = "flexChange";
 
   const title = document.createElement("a");
   title.innerHTML = threadTitle;
