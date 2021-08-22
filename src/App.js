@@ -42,8 +42,6 @@ function App() {
     getState();
   });
 
-<<<<<<< HEAD
-=======
   function logout() {
     cookies.remove("token");
     setUsername("");
@@ -51,7 +49,6 @@ function App() {
     window.location.reload();
   }
 
->>>>>>> 24e66d8 (Logout)
   function makeNavbar() {
     if (username === "") {
       return (
@@ -81,23 +78,6 @@ function App() {
     } else if (userType === "user") {
       return (
         <nav className="roundBorder flexRow flexCrossCenter topMargin lightWhite">
-<<<<<<< HEAD
-          <div>
-            <Link to="/"> Board Index </Link>
-          </div>
-          <div className="flexChange"></div>
-          <div className="leftMargin">
-            <p> Welcome back, {username} </p>
-          </div>
-          <div className="leftMargin">
-            <img
-              src="https://i.ibb.co/44mwbdv/power-off-line.png"
-              alt="power-off-line"
-              border="0"
-            ></img>
-            <Link to="/login"> Login </Link>
-          </div>
-=======
           <Link to="/"> Board Index </Link>
           <div className="flexChange"></div>
           <p> Welcome back, {username} </p>
@@ -111,34 +91,17 @@ function App() {
             {" "}
             Logout{" "}
           </p>
->>>>>>> 24e66d8 (Logout)
         </nav>
       );
     } else {
       return (
         <nav className="roundBorder flexRow flexCrossCenter topMargin lightWhite">
-<<<<<<< HEAD
-          <div>
-            <Link to="/"> Board Index </Link>
-          </div>
-=======
           <Link to="/"> Board Index </Link>
->>>>>>> 24e66d8 (Logout)
           <div className="flexChange"></div>
           <Link to="/admin"> Admin Portal </Link>
           <div className="leftMargin">
             <p> Welcome back, {username} </p>
           </div>
-<<<<<<< HEAD
-          <div className="leftMargin">
-            <img
-              src="https://i.ibb.co/44mwbdv/power-off-line.png"
-              alt="power-off-line"
-              border="0"
-            ></img>
-            <Link to="/login"> Login </Link>
-          </div>
-=======
           <img
             src="https://i.ibb.co/44mwbdv/power-off-line.png"
             alt="power-off-line"
@@ -149,7 +112,6 @@ function App() {
             {" "}
             Logout{" "}
           </p>
->>>>>>> 24e66d8 (Logout)
         </nav>
       );
     }

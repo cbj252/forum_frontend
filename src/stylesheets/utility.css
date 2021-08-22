@@ -38,6 +38,10 @@
 	flex: 1 1 auto;
 }
 
+.flexNoChange {
+	flex: 0 0 auto;
+}
+
 .centerText {
 	vertical-align: middle;
 }
@@ -81,11 +85,9 @@ h1 {
 .upper {
 	text-transform: uppercase;
 }
-<<<<<<< HEAD
-=======
 
 .blueLink {
 	color: #105289;
 	text-decoration: underline;
+	cursor: pointer;
 }
->>>>>>> 24e66d8 (Logout)
