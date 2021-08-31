@@ -78,7 +78,7 @@ function App() {
     } else if (userType === "user") {
       return (
         <nav className="roundBorder flexRow flexCrossCenter topMargin lightWhite">
-          <Link to="/"> Board Index </Link>
+          <Link to="/"> Main Page </Link>
           <div className="flexChange"></div>
           <p> Welcome back, {username} </p>
           <img
@@ -96,7 +96,7 @@ function App() {
     } else {
       return (
         <nav className="roundBorder flexRow flexCrossCenter topMargin lightWhite">
-          <Link to="/"> Board Index </Link>
+          <Link to="/"> Main Page </Link>
           <div className="flexChange"></div>
           <Link to="/admin"> Admin Portal </Link>
           <div className="leftMargin">

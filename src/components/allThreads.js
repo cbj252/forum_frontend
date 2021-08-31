@@ -83,7 +83,11 @@ const AllThreads = function AllThreads(props) {
           <ul id="threadArea"></ul>
         </div>
       </Router>
-      <form id="makeThreadArea" onSubmit={(e) => postNewThread(e)}>
+      <form
+        id="makeThreadArea"
+        className="topMargin"
+        onSubmit={(e) => postNewThread(e)}
+      >
         <label> Make New Thread </label>
         <div className="topMargin">
           <label htmlFor="title"> Thread Title: </label>
