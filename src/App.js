@@ -54,7 +54,7 @@ function App() {
       return (
         <nav className="roundBorder flexRow flexCrossCenter topMargin lightWhite">
           <div>
-            <Link to="/"> Board Index </Link>
+            <Link to="/"> Main Page </Link>
           </div>
           <div className="flexChange"></div>
           <div className="leftMargin">
@@ -151,7 +151,9 @@ function App() {
   }
 
   function Thread() {
-    return <OneThread token={jwttoken} username={username} userType={userType} />;
+    return (
+      <OneThread token={jwttoken} username={username} userType={userType} />
+    );
   }
 
   function MainPage() {

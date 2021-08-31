@@ -4,12 +4,15 @@ import { createThread } from "../helpFunc";
 
 const AllThreads = function AllThreads(props) {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     const threadArea = document.getElementById("threadArea");
+    const makeThreadArea = document.getElementById("makeThreadArea");
     function getThreads() {
       if (!props.token) {
         threadArea.innerHTML = "Not logged in.";
+        makeThreadArea.innerHTML = "";
       }
       fetch(process.env.REACT_APP_API_LOCATION + "/threads", {
         method: "GET",
@@ -50,9 +53,23 @@ const AllThreads = function AllThreads(props) {
       }),
     })
       .then((response) => response.json())
+      .then(async (threadId) => {
+        window.location.href = `/thread/${threadId}`;
+        fetch(process.env.REACT_APP_API_LOCATION + "/threads/" + threadId, {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + props.token,
+          },
+          body: JSON.stringify({
+            content: content,
+          }),
+        });
+      })
+      .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
-        window.location.reload();
+        console.log("Success making post", data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -62,17 +79,29 @@ const AllThreads = function AllThreads(props) {
   return (
     <div>
       <Router>
-        <div className="darkBlue mainBox topMargin marginMiddle">
+        <div className="mainBox topMargin marginMiddle">
           <ul id="threadArea"></ul>
         </div>
       </Router>
-      <form onSubmit={(e) => postNewThread(e)}>
-        <label htmlFor="title"> Thread Title: </label>
-        <input
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
+      <form id="makeThreadArea" onSubmit={(e) => postNewThread(e)}>
+        <label> Make New Thread </label>
+        <div className="topMargin">
+          <label htmlFor="title"> Thread Title: </label>
+          <input
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          ></input>
+        </div>
+        <div className="topMargin">
+          <label htmlFor="content"> New post content: </label>
+          <textarea
+            name="content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="bigInputBox"
+          ></textarea>
+        </div>
         <button type="submit">
           <img
             src="https://i.ibb.co/tYdNk0J/feather.png"

@@ -23,6 +23,7 @@ const LoginForm = function LoginForm(props) {
       .then((response) => {
         props.onChangeToken(response.token);
         cookies.set("token", response.token, { path: "/" });
+        window.location.href = "../";
       })
       .catch((error) => {
         console.error("Error:", error);
