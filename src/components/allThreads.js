@@ -25,6 +25,7 @@ const AllThreads = function AllThreads(props) {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          threadArea.innerHTML = "";
           data.forEach((element) => {
             threadArea.appendChild(createThread(element._id, element.title));
           });
@@ -80,7 +81,9 @@ const AllThreads = function AllThreads(props) {
     <div>
       <Router>
         <div className="mainBox topMargin marginMiddle">
-          <ul id="threadArea"></ul>
+          <ul id="threadArea">
+            <p> Loading threads, please wait. </p>
+          </ul>
         </div>
       </Router>
       <form

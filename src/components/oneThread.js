@@ -107,6 +107,7 @@ const OneThread = function OneThread(props) {
           if (data.length === 0) {
             const message = document.createElement("p");
             message.innerHTML = "No posts in this thread. Make a post now!";
+            postArea.innerHTML = "";
             postArea.appendChild(message);
           } else {
             data.forEach((element) => {
@@ -130,6 +131,7 @@ const OneThread = function OneThread(props) {
               ) {
                 postDiv.appendChild(deleteLink(element._id));
               }
+              postArea.innerHTML = "";
               postArea.appendChild(postDiv);
             });
           }
@@ -170,7 +172,9 @@ const OneThread = function OneThread(props) {
   return (
     <div>
       <div className="roundBorder lightWhite topMargin flexRow">
-        <ul id="postArea"></ul>
+        <ul id="postArea">
+          <p> Loading, please wait. </p>
+        </ul>
       </div>
       <form onSubmit={(e) => postNewPost(e)}>
         <label htmlFor="content"> New post content: </label>
