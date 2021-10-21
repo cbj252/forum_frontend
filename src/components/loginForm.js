@@ -53,7 +53,7 @@ const LoginForm = function LoginForm(props) {
             <input
               className="topMargin"
               name="password"
-              type="text"
+              type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               required
