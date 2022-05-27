@@ -1,29 +1,28 @@
-
 .topMargin {
-	margin-top: 1em;
+  margin-top: 1em;
 }
 
 .leftMargin {
-	margin-left: 1em;
+  margin-left: 1em;
 }
 
 .rightMargin {
-	margin-right: 1em;
+  margin-right: 1em;
 }
 
 .marginMiddle {
-	margin-left: auto;
-	margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .flexRow {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .flexColumn {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .flexMainCenter {
@@ -31,63 +30,63 @@
 }
 
 .flexCrossCenter {
-	align-items: center;
+  align-items: center;
 }
 
 .flexChange {
-	flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .flexNoChange {
-	flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 .centerText {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .inlineBlock {
-	display: inline-block;
+  display: inline-block;
 }
 
 h1 {
-	font-size: 4em;
+  font-size: 4em;
 }
 
 .lightBlue {
-	background-color: #6ACEFF;
+  background-color: #6aceff;
 }
 
 .mediumBlue {
-	background-color: #12A3EB;
+  background-color: #12a3eb;
 }
 
 .darkBlue {
-	background-color: #0076B1;
+  background-color: #0076b1;
 }
 
 .lightWhite {
-	background-color: #ECF3F7;
+  background-color: #ecf3f7;
 }
 
 .whiteText {
-	color: #FFFFFF;
+  color: #ffffff;
 }
 
 .redText {
-	color: #D31141;
+  color: #d31141;
 }
 
 .smallText {
-	font-size: 10px;
+  font-size: 10px;
 }
 
 .upper {
-	text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .blueLink {
-	color: #105289;
-	text-decoration: underline;
-	cursor: pointer;
+  color: #105289;
+  text-decoration: underline;
+  cursor: pointer;
 }

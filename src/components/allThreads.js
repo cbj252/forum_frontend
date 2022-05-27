@@ -80,7 +80,7 @@ const AllThreads = function AllThreads(props) {
   return (
     <div>
       <Router>
-        <div className="mainBox topMargin marginMiddle">
+        <div className="main topMargin marginMiddle">
           <ul id="threadArea">
             <p> Loading threads, please wait. </p>
           </ul>
