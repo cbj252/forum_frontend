@@ -138,7 +138,7 @@ function App() {
               />
             }
           />
-          <Route path="/" element={<AllThreads token={jwttoken} />} />
+          <Route path="*" element={<AllThreads token={jwttoken} />} />
         </Routes>
       </BrowserRouter>
     </div>

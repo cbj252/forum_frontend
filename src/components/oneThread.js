@@ -169,13 +169,25 @@ const OneThread = function OneThread(props) {
       });
   }
 
+  function changePageUI() {
+    return (
+      <span className="topMargin smallText flexRow flexCrossCenter flexEnd">
+        <span> 28 posts • Page 1 of 2 • </span>
+        <span className="pageBox halfLeftMargin"> 1 </span>
+        <span className="pageBox halfLeftMargin"> 2 </span>
+      </span>
+    );
+  }
+
   return (
     <div>
+      {changePageUI()}
       <div className="roundBorder lightWhite topMargin flexRow">
         <ul id="postArea">
           <p> Loading, please wait. </p>
         </ul>
       </div>
+      {changePageUI()}
       <form
         className="roundBorder topMargin leftMargin rightMargin lightWhite"
         onSubmit={(e) => postNewPost(e)}

@@ -6,8 +6,16 @@
   margin-left: 1em;
 }
 
+.halfLeftMargin {
+  margin-left: 0.5em;
+}
+
 .rightMargin {
   margin-right: 1em;
+}
+
+.halfRightMargin {
+  margin-right: 0.5em;
 }
 
 .marginMiddle {
@@ -31,6 +39,10 @@
 
 .flexCrossCenter {
   align-items: center;
+}
+
+.flexEnd {
+  justify-content: flex-end;
 }
 
 .flexChange {
