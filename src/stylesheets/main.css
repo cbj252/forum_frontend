@@ -23,6 +23,12 @@
   background-color: #e9e9e9;
 }
 
+.postBox {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width: auto;
+}
+
 a {
   color: #105289;
 }

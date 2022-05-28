@@ -1,25 +1,3 @@
-export function createPost(threadTitle, username, postContent, time) {
-  const mainDiv = document.createElement("div");
-  mainDiv.classList = "flexChange";
-
-  const title = document.createElement("a");
-  title.innerHTML = threadTitle;
-  title.href = "/";
-
-  const timestamp = document.createElement("p");
-  timestamp.className = "smallText";
-  timestamp.innerHTML = `by ${username} >> ${new Date(time)}`;
-
-  const content = document.createElement("p");
-  content.className = "topMargin";
-  content.innerHTML = postContent;
-
-  mainDiv.appendChild(title);
-  mainDiv.appendChild(timestamp);
-  mainDiv.appendChild(content);
-  return mainDiv;
-}
-
 export function createThread(threadId, threadTitle) {
   const mainLi = document.createElement("li");
   mainLi.key = threadId;
