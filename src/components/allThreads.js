@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import { createThread } from "../helpFunc";
 
 const AllThreads = function AllThreads(props) {
@@ -79,19 +78,17 @@ const AllThreads = function AllThreads(props) {
 
   return (
     <div>
-      <Router>
-        <div className="main topMargin marginMiddle">
-          <ul id="threadArea">
-            <p> Loading threads, please wait. </p>
-          </ul>
-        </div>
-      </Router>
+      <div className="topMargin marginMiddle">
+        <ul id="threadArea">
+          <p> Loading threads, please wait. </p>
+        </ul>
+      </div>
       <form
         id="makeThreadArea"
-        className="topMargin"
+        className="roundBorder topMargin leftMargin rightMargin lightWhite"
         onSubmit={(e) => postNewThread(e)}
       >
-        <label> Make New Thread </label>
+        <label className="underline"> Make New Thread </label>
         <div className="topMargin">
           <label htmlFor="title"> Thread Title: </label>
           <input

@@ -110,6 +110,7 @@ const OneThread = function OneThread(props) {
             postArea.innerHTML = "";
             postArea.appendChild(message);
           } else {
+            postArea.innerHTML = "";
             data.forEach((element) => {
               const postDiv = document.createElement("li");
               postDiv.key = element._id;
@@ -131,7 +132,6 @@ const OneThread = function OneThread(props) {
               ) {
                 postDiv.appendChild(deleteLink(element._id));
               }
-              postArea.innerHTML = "";
               postArea.appendChild(postDiv);
             });
           }
@@ -176,13 +176,19 @@ const OneThread = function OneThread(props) {
           <p> Loading, please wait. </p>
         </ul>
       </div>
-      <form onSubmit={(e) => postNewPost(e)}>
-        <label htmlFor="content"> New post content: </label>
+      <form
+        className="roundBorder topMargin leftMargin rightMargin lightWhite"
+        onSubmit={(e) => postNewPost(e)}
+      >
+        <label className="underline" htmlFor="content">
+          {" "}
+          New post content:{" "}
+        </label>
         <textarea
           name="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="bigInputBox"
+          className="bigInputBox topMargin"
         ></textarea>
         <br />
         <button type="submit">

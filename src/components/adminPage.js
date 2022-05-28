@@ -105,7 +105,7 @@ const AdminPage = function AdminPage(props) {
   }, [props.token]);
 
   return (
-    <div className="darkBlue main topMargin marginMiddle">
+    <div className="darkBlue topMargin marginMiddle">
       <div id="msgBox">
         <div>
           <p> Permission rules: </p>

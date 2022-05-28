@@ -85,6 +85,10 @@ h1 {
   text-transform: uppercase;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .blueLink {
   color: #105289;
   text-decoration: underline;
