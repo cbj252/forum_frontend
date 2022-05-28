@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import MakeNewPost from "./makeNewPost";
 
 const OneThread = function OneThread(props) {
-  const [content, setContent] = useState("");
   let { id } = useParams();
 
   useEffect(() => {
@@ -182,32 +182,6 @@ const OneThread = function OneThread(props) {
     getPosts();
   }, [props.token, props.userType, props.username, id]);
 
-  function postNewPost(e) {
-    e.preventDefault();
-    if (!props.token) {
-      return "Not logged in.";
-    }
-    fetch(process.env.REACT_APP_API_LOCATION + "/threads/" + id, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer " + props.token,
-      },
-      body: JSON.stringify({
-        content: content,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-
   function changePageUI() {
     return (
       <span className="topMargin smallText flexRow flexCrossCenter flexEnd">
@@ -225,30 +199,7 @@ const OneThread = function OneThread(props) {
         <p> Loading, please wait. </p>
       </ul>
       {changePageUI()}
-      <form
-        className="roundBorder topMargin leftMargin rightMargin lightWhite"
-        onSubmit={(e) => postNewPost(e)}
-      >
-        <label className="underline" htmlFor="content">
-          {" "}
-          New post content:{" "}
-        </label>
-        <textarea
-          name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="bigInputBox topMargin"
-        ></textarea>
-        <br />
-        <button type="submit">
-          <img
-            src="https://i.ibb.co/tYdNk0J/feather.png"
-            alt="feather"
-            border="0"
-          ></img>
-          Submit
-        </button>
-      </form>
+      <MakeNewPost token={props.token} />
     </div>
   );
 };
