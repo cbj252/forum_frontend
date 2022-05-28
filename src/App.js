@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import LoginForm from "./components/loginForm";
 import SignupForm from "./components/signupForm";
 import AllThreads from "./components/allThreads";
@@ -119,50 +119,30 @@ function App() {
 
   return (
     <div className="main roundBorder mediumBlue marginMiddle topMargin">
-      <Router>
+      <BrowserRouter>
         {makeNavbar()}
-        <Switch>
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route path="/signup">
-            <SignUpPage />
-          </Route>
-          <Route path="/admin">
-            <AdminCenter />
-          </Route>
-          <Route path="/thread/:id">
-            <Thread />
-          </Route>
-          <Route path="/">
-            <MainPage />
-          </Route>
-        </Switch>
-      </Router>
+        <Routes>
+          <Route
+            path="/login"
+            element={<LoginForm onChangeToken={setJwttoken} />}
+          />
+          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/admin" element={<AdminPage token={jwttoken} />} />
+          <Route
+            path="/thread/:id"
+            element={
+              <OneThread
+                token={jwttoken}
+                username={username}
+                userType={userType}
+              />
+            }
+          />
+          <Route path="/" element={<AllThreads token={jwttoken} />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-
-  function LoginPage() {
-    return <LoginForm onChangeToken={setJwttoken} />;
-  }
-
-  function SignUpPage() {
-    return <SignupForm />;
-  }
-
-  function Thread() {
-    return (
-      <OneThread token={jwttoken} username={username} userType={userType} />
-    );
-  }
-
-  function MainPage() {
-    return <AllThreads token={jwttoken} />;
-  }
-
-  function AdminCenter() {
-    return <AdminPage token={jwttoken} />;
-  }
 }
 
 export default App;
