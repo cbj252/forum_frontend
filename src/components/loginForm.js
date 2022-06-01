@@ -21,9 +21,19 @@ const LoginForm = function LoginForm(props) {
     })
       .then((response) => response.json())
       .then((response) => {
-        props.onChangeToken(response.token);
-        cookies.set("token", response.token, { path: "/" });
-        window.location.href = "../";
+        const infoArea = document.getElementById("infoArea");
+        if (response === "Incorrect username.") {
+          infoArea.innerHTML = "Incorrect username";
+        } else if (response === "Incorrect password.")
+          infoArea.innerHTML = "Incorrect password.";
+        else if (response === "Database error.") {
+          infoArea.innerHTML =
+            "Database error, please contact an administrator.";
+        } else {
+          props.onChangeToken(response.token);
+          cookies.set("token", response.token, { path: "/" });
+          window.location.href = "../";
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -63,6 +73,7 @@ const LoginForm = function LoginForm(props) {
         <button className="topMargin" onClick={() => submitForm()}>
           Submit
         </button>
+        <div id="infoArea" className="topMargin"></div>
         <div className="topMargin">
           <p>
             To test out accounts with different authorization levels, login with
