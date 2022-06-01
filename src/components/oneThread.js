@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import MakeNewPost from "./makeNewPost";
 
 const OneThread = function OneThread(props) {
   let { id } = useParams();
+  let [searchParams, setSearchParams] = useSearchParams();
+  let [postNo, setPostNo] = useState("Loading");
 
   useEffect(() => {
     const postArea = document.getElementById("postArea");
@@ -145,14 +147,22 @@ const OneThread = function OneThread(props) {
       if (!props.token) {
         postArea.innerHTML = "Not logged in.";
       }
-      fetch(process.env.REACT_APP_API_LOCATION + "/threads/" + id, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: "Bearer " + props.token,
-        },
-      })
+      let startPost = 0;
+      if (!isNaN(parseInt(searchParams.get("start")))) {
+        startPost = parseInt(searchParams.get("start"));
+      }
+      fetch(
+        process.env.REACT_APP_API_LOCATION +
+          `/threads/${id}?start=${startPost}`,
+        {
+          method: "GET",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: "Bearer " + props.token,
+          },
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           if (data.length === 0) {
@@ -179,13 +189,36 @@ const OneThread = function OneThread(props) {
         });
     }
 
+    function checkPosts() {
+      fetch(process.env.REACT_APP_API_LOCATION + `/threads/${id}/count`, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + props.token,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setPostNo(data);
+        });
+    }
+
+    checkPosts();
     getPosts();
-  }, [props.token, props.userType, props.username, id]);
+  }, [
+    props.token,
+    props.userType,
+    props.username,
+    id,
+    searchParams,
+    setSearchParams,
+  ]);
 
   function changePageUI() {
     return (
       <span className="topMargin smallText flexRow flexCrossCenter flexEnd">
-        <span> 28 posts • Page 1 of 2 • </span>
+        <span> {postNo} posts • Page 1 of 2 • </span>
         <span className="pageBox halfLeftMargin"> 1 </span>
         <span className="pageBox halfLeftMargin"> 2 </span>
       </span>
