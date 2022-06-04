@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import MakeNewPost from "./makeNewPost";
+import OneThreadPageNo from "./oneThreadPageNo";
 
 const OneThread = function OneThread(props) {
   let { id } = useParams();
@@ -215,23 +216,13 @@ const OneThread = function OneThread(props) {
     setSearchParams,
   ]);
 
-  function changePageUI() {
-    return (
-      <span className="topMargin smallText flexRow flexCrossCenter flexEnd">
-        <span> {postNo} posts • Page 1 of 2 • </span>
-        <span className="pageBox halfLeftMargin"> 1 </span>
-        <span className="pageBox halfLeftMargin"> 2 </span>
-      </span>
-    );
-  }
-
   return (
     <div>
-      {changePageUI()}
+      <OneThreadPageNo totalPostNo={postNo} />
       <ul id="postArea">
         <p> Loading, please wait. </p>
       </ul>
-      {changePageUI()}
+      <OneThreadPageNo totalPostNo={postNo} />
       <MakeNewPost token={props.token} />
     </div>
   );
