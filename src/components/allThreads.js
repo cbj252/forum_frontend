@@ -23,7 +23,6 @@ const AllThreads = function AllThreads(props) {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           threadArea.innerHTML = "";
           data.forEach((element) => {
             threadArea.appendChild(createThread(element._id, element.title));
