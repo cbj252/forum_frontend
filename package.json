@@ -10,7 +10,7 @@
     "react-scripts": "^5.0.1",
     "universal-cookie": "^4.0.4"
   },
-  "homepage": "http://cbj252.github.io/forum_frontend",
+  "homepage": "https://forum-frontend.onrender.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
