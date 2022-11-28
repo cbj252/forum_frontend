@@ -73,7 +73,7 @@ const LoginForm = function LoginForm(props) {
         <button className="topMargin" onClick={() => submitForm()}>
           Submit
         </button>
-        <div id="infoArea" className="topMargin"></div>
+        <div id="infoArea" className="topMargin redText"></div>
         <div className="topMargin">
           <p>
             To test out accounts with different authorization levels, login with
@@ -84,7 +84,7 @@ const LoginForm = function LoginForm(props) {
             "user" as the username and "user" as the password)
           </p>
           <p> Normal user: user </p>
-          <p> Admin: administrator </p>
+          <p> Admin: admin </p>
           <p> Owner: owner </p>
         </div>
       </div>
