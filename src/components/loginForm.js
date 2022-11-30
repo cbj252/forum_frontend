@@ -86,6 +86,7 @@ const LoginForm = function LoginForm(props) {
           <p> Normal user: user </p>
           <p> Admin: admin </p>
           <p> Owner: owner </p>
+          <p> Note that the backend needs to be spun up to facilitate logging in so it may take a while to log in </p>
         </div>
       </div>
     </div>
